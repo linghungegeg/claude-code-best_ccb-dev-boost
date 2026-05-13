@@ -16,6 +16,7 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 | Parallel tool calls | Cut latency by about 40%-75% for 2-4 independent tools |
 | Call-chain lookup | Move from 30-120 seconds of searching to about 3-10 seconds of index querying |
 | Session handoff | Avoid 5K-20K tokens of repeated historical context |
+| Chinese developer UX | Localized high-frequency settings, MCP, cache warnings, permission prompts, and task status labels |
 
 ## What This Is
 
@@ -26,7 +27,7 @@ CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical o
 - Session continuity: built-in `ai-sessions` for searching local Claude Code / Codex sessions.
 - DeepSeek support: DeepSeek V4 Pro / Flash 1M context recognition and output-token tuning.
 - Windows-friendly setup: bundled helper MCPs and Windows compatibility fixes.
-- Localized UI: Chinese labels for frequently used settings, cache warnings, and index rules.
+- Localized UI: Chinese developer-friendly labels for config items, MCP panels, cache warnings, permission prompts, and common task states.
 
 ## Results At A Glance
 
@@ -38,6 +39,7 @@ CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical o
 | Code navigation | Call-chain and impact analysis move from multiple Grep/Read rounds to one index query plus targeted source reads |
 | Session recovery | AI session search can avoid 5K-20K tokens of repeated context explanation |
 | Windows usage | Bundled MCP binaries and index-rule fixes reduce setup friction |
+| Chinese UX | Localized config, MCP, cache, permission approval, and task status surfaces reduce onboarding friction |
 
 Numbers are based on project measurements and estimates. Actual savings depend on model pricing, project size, cache hit rate, and workflow.
 
