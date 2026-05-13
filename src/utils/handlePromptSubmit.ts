@@ -163,14 +163,14 @@ export async function handlePromptSubmit(
     // enqueueing, so this only fires for task-notifications, cron prompts,
     // and other programmatic queued input — never a duplicate of the
     // direct-path call.
-    const firstCmd = queuedCommands[0];
+    const firstCmd = queuedCommands[0]
     if (
       firstCmd &&
       firstCmd.mode === 'prompt' &&
       typeof firstCmd.value === 'string' &&
       !firstCmd.isMeta
     ) {
-      setUserInputOnProcessing(firstCmd.value);
+      setUserInputOnProcessing(firstCmd.value)
     }
     startQueryProfile()
     await executeUserInput({
