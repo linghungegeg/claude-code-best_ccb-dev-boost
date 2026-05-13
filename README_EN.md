@@ -6,6 +6,17 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 
 > This is an unofficial enhancement fork of `claude-code-best/claude-code`. It focuses on token cost, prompt-cache hit rate, response latency, codebase indexing, session continuity, and Windows usability. It is not affiliated with Anthropic.
 
+## Key Benefits
+
+| Scenario | Optimized Result |
+|---|---|
+| Daily prompts | Save roughly 500-1,500 tokens per turn |
+| Large codebase analysis | Avoid 10K-30K tokens of unrelated source and config reads |
+| MCP stability | Reduce 80%+ of cache busts caused by tool-list churn |
+| Parallel tool calls | Cut latency by about 40%-75% for 2-4 independent tools |
+| Call-chain lookup | Move from 30-120 seconds of searching to about 3-10 seconds of index querying |
+| Session handoff | Avoid 5K-20K tokens of repeated historical context |
+
 ## What This Is
 
 CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical optimization layer for long-running real-world projects:

@@ -1,4 +1,5 @@
 import { readdir, readFile, writeFile, cp } from 'fs/promises'
+import { existsSync } from 'fs'
 import { join } from 'path'
 import { getMacroDefines } from './scripts/defines.ts'
 import { DEFAULT_BUILD_FEATURES } from './scripts/defines.ts'
@@ -93,10 +94,17 @@ await cp('src/utils/vendor/ripgrep', ripgrepDir, { recursive: true })
 console.log(`Copied src/utils/vendor/ripgrep/ → ${ripgrepDir}/`)
 
 const codebaseMemoryDir = join(outdir, 'vendor', 'codebase-memory')
-await cp('src/utils/vendor/codebase-memory', codebaseMemoryDir, {
-  recursive: true,
-})
-console.log(`Copied src/utils/vendor/codebase-memory/ → ${codebaseMemoryDir}/`)
+const codebaseMemorySourceDir = 'src/utils/vendor/codebase-memory'
+if (existsSync(codebaseMemorySourceDir)) {
+  await cp(codebaseMemorySourceDir, codebaseMemoryDir, {
+    recursive: true,
+  })
+  console.log(`Copied ${codebaseMemorySourceDir}/ → ${codebaseMemoryDir}/`)
+} else {
+  console.log(
+    `Skipped ${codebaseMemorySourceDir}/; codebase-memory-mcp will be resolved from CODEBASE_MEMORY_MCP_COMMAND, local install, or PATH.`,
+  )
+}
 
 // Step 5: Generate cli-bun and cli-node executable entry points
 const cliBun = join(outdir, 'cli-bun.js')
