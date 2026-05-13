@@ -18,6 +18,10 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 | Session handoff | Avoid 5K-20K tokens of repeated historical context |
 | Chinese developer UX | Localized high-frequency settings, MCP, cache warnings, permission prompts, and task status labels |
 
+## Real-World Measurement
+
+In multi-turn development and bug fixing on a legacy H5 game codebase, the optimized prompt-cache hit rate stayed around **92%-96%** over long-running work, with peak runs reaching **98%**. This is observed from real development usage, not a theoretical estimate. Actual results still depend on the model, context length, MCP setup, file-read volume, and session workflow.
+
 ## Cost Reference
 
 For individual developers, reading fewer unrelated files, repeating less context, and improving cache stability eventually means lower API spend.
@@ -46,6 +50,7 @@ CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical o
 | Area | Result |
 |---|---|
 | Token usage | Small requests save roughly 500-1,500 tokens; large codebase analysis can avoid 10K-30K unnecessary tokens |
+| Measured cache hit rate | Stable 92%-96% in multi-turn legacy H5 game development and bug fixing; peak runs reached 98% |
 | Cache stability | MCP tool stabilization reduces 80%+ of cache busts caused by MCP reconnect noise |
 | Latency | Independent tool calls can run in parallel, reducing latency by about 40%-75% in 2-4 tool scenarios |
 | Code navigation | Call-chain and impact analysis move from multiple Grep/Read rounds to one index query plus targeted source reads |
