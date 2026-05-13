@@ -9,7 +9,6 @@
 import { readdir, readFile, writeFile, cp } from 'node:fs/promises'
 import { chmodSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { execSync } from 'node:child_process'
 
 const outdir = 'dist'
 
@@ -41,8 +40,14 @@ async function postBuild() {
   console.log(`Copied vendor/audio-capture/ → ${audioCaptureDir}/`)
 
   const ripgrepDir = join(outdir, 'vendor', 'ripgrep')
-  await cp('src/utils/vendor/ripgrep', ripgrepDir, { recursive: true } as never)
-  console.log(`Copied src/utils/vendor/ripgrep/ → ${ripgrepDir}/`)
+  if (existsSync('src/utils/vendor/ripgrep')) {
+    await cp('src/utils/vendor/ripgrep', ripgrepDir, {
+      recursive: true,
+    } as never)
+    console.log(`Copied src/utils/vendor/ripgrep/ → ${ripgrepDir}/`)
+  } else {
+    console.log('Skipped ripgrep vendor copy; use rg from PATH.')
+  }
 
   const codebaseMemoryDir = join(outdir, 'vendor', 'codebase-memory')
   if (existsSync('src/utils/vendor/codebase-memory')) {

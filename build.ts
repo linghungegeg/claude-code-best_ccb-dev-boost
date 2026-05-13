@@ -90,8 +90,13 @@ await cp('vendor/audio-capture', audioCaptureDir, { recursive: true })
 console.log(`Copied vendor/audio-capture/ → ${audioCaptureDir}/`)
 
 const ripgrepDir = join(outdir, 'vendor', 'ripgrep')
-await cp('src/utils/vendor/ripgrep', ripgrepDir, { recursive: true })
-console.log(`Copied src/utils/vendor/ripgrep/ → ${ripgrepDir}/`)
+const ripgrepSourceDir = 'src/utils/vendor/ripgrep'
+if (existsSync(ripgrepSourceDir)) {
+  await cp(ripgrepSourceDir, ripgrepDir, { recursive: true })
+  console.log(`Copied ${ripgrepSourceDir}/ → ${ripgrepDir}/`)
+} else {
+  console.log(`Skipped ${ripgrepSourceDir}/; use rg from PATH.`)
+}
 
 const codebaseMemoryDir = join(outdir, 'vendor', 'codebase-memory')
 const codebaseMemorySourceDir = 'src/utils/vendor/codebase-memory'

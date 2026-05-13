@@ -38,6 +38,9 @@ jobs:
       - name: Type check
         run: bun run typecheck
 
+      - name: Build CLI for integration tests
+        run: bun run build:vite
+
       - name: Test with Coverage
         run: |
           # Tolerate pre-existing flaky tests (Bun mock pollution / order-dependent state).
