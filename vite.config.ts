@@ -123,6 +123,8 @@ export default defineConfig({
 
   resolve: {
     alias: {
+      'src/state/AppState.js': resolve(projectRoot, 'src/state/AppState.tsx'),
+      'src/utils/config.js': resolve(projectRoot, 'src/utils/config.ts'),
       // src/* path alias (mirrors tsconfig paths)
       'src/': resolve(projectRoot, 'src/'),
     },

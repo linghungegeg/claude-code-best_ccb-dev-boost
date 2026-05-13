@@ -22,10 +22,10 @@ export async function launchRepl(
   const { REPL } = await import('./screens/REPL.js');
   await renderAndRun(
     root,
-    <SentryErrorBoundary name="RootREPLBoundary">
-      <App {...appProps}>
+    <App {...appProps}>
+      <SentryErrorBoundary name="RootREPLBoundary">
         <REPL {...replProps} />
-      </App>
-    </SentryErrorBoundary>,
+      </SentryErrorBoundary>
+    </App>,
   );
 }
