@@ -6,6 +6,10 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 
 > This is an unofficial enhancement fork of `claude-code-best/claude-code`. It focuses on token cost, prompt-cache hit rate, response latency, codebase indexing, session continuity, and Windows usability. It is not affiliated with Anthropic.
 
+## Quick Navigation
+
+[Key Benefits](#key-benefits) · [Real-World Measurement](#real-world-measurement) · [Cost Reference](#cost-reference) · [Quick Start](#quick-start) · [Added Features](#how-to-use-the-added-features) · [Codebase Indexing](#1-codebase-indexing) · [Acknowledgements](#acknowledgements)
+
 ## Key Benefits
 
 | Scenario | Optimized Result |
@@ -25,6 +29,27 @@ In multi-turn development and bug fixing on a legacy H5 game codebase, the optim
 ## Cost Reference
 
 For individual developers, reading fewer unrelated files, repeating less context, and improving cache stability eventually means lower API spend.
+
+### Mainstream Model Cost Estimate
+
+Rough estimate with **100M cacheable input tokens/month**, long-running hit rate around **94%-96%**, peak hit rate **98%**, and **1 USD ≈ 7.2 RMB**. This only counts input-cache savings. It does not include output tokens, extra tool charges, subscription discounts, or third-party proxy pricing.
+
+| Example Model | Uncached Input | Cache Hit Input | Monthly Savings at 94%-96% Hit Rate | Monthly Savings at 98% Hit Rate |
+|---|---:|---:|---:|---:|
+| Claude Sonnet 4.6 | $3 / 1M | $0.30 / 1M | ~¥1,827-¥1,866 | ~¥1,905 |
+| Claude Opus 4.7 | $5 / 1M | $0.50 / 1M | ~¥3,045-¥3,110 | ~¥3,175 |
+| GPT-5.4 | $2.50 / 1M | $0.25 / 1M | ~¥1,523-¥1,555 | ~¥1,588 |
+| GPT-5.4 mini | $0.75 / 1M | $0.075 / 1M | ~¥457-¥467 | ~¥476 |
+| DeepSeek V4 Pro | $0.435 / 1M | $0.003625 / 1M | ~¥292-¥298 | ~¥306 |
+| DeepSeek V4 Flash | $0.14 / 1M | $0.0028 / 1M | ~¥93-¥95 | ~¥97 |
+
+GLM, Qwen, third-party proxy, and enterprise pricing vary a lot. Use this formula for your own plan:
+
+```text
+monthly savings ≈ cacheable input volume × hit rate × (uncached input price - cached input price)
+```
+
+Price references: official [Claude](https://platform.claude.com/docs/en/about-claude/pricing) / [OpenAI](https://openai.com/api/pricing/) / [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing-details-usd) pricing pages. Model prices change frequently, so these numbers are for scale only. Your provider dashboard is the source of truth.
 
 | Usage Level | Typical Savings | Monthly Cost Impact |
 |---|---|---|
