@@ -30,6 +30,18 @@ In multi-turn development and bug fixing on a legacy H5 game codebase, the optim
 
 For individual developers, reading fewer unrelated files, repeating less context, and improving cache stability eventually means lower API spend.
 
+### Combined Cost Reduction
+
+For input-heavy, long-running work on the same project with stable prompt-cache hits, cost reduction comes from three layers:
+
+| Setup | Cost Impact Reference |
+|---|---|
+| Model switch only: Claude Sonnet → DeepSeek V4 Pro | Model-price difference can reduce cost to roughly 1/7-1/10, saving about 85%-90% |
+| CCB Dev Boost only: still using Claude | Indexing, fewer file reads, and cache stability usually reduce 40%-60% of wasted input tokens |
+| CCB Dev Boost + DeepSeek V4 Pro | Under the measured 92%-96% long-running cache hit rate, with peak runs at 98%, total API spend can potentially drop by 90%+ |
+
+Intuition: if heavy development used to cost around ¥100, an ideal setup with official DeepSeek V4 Pro pricing, high input ratio, and stable cache hits may bring it down to single-digit or low-teen RMB. The real bill depends on output ratio, model pricing, cache hit rate, MCP stability, project size, and workflow.
+
 ### Mainstream Model Cost Estimate
 
 Rough estimate with **100M cacheable input tokens/month**, long-running hit rate around **94%-96%**, peak hit rate **98%**, and **1 USD ≈ 7.2 RMB**. This only counts input-cache savings. It does not include output tokens, extra tool charges, subscription discounts, or third-party proxy pricing.
