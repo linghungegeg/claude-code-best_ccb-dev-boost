@@ -18,6 +18,18 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 | Session handoff | Avoid 5K-20K tokens of repeated historical context |
 | Chinese developer UX | Localized high-frequency settings, MCP, cache warnings, permission prompts, and task status labels |
 
+## Cost Reference
+
+For individual developers, reading fewer unrelated files, repeating less context, and improving cache stability eventually means lower API spend.
+
+| Usage Level | Typical Savings | Monthly Cost Impact |
+|---|---|---|
+| Light usage | Save roughly 50K-150K tokens per day | Useful for solo and side projects by reducing wasted exploration and repeated context |
+| Medium usage | Save roughly 200K-800K tokens per day | More visible in daily large-codebase development, often reducing a meaningful part of fixed API usage |
+| Heavy usage | Save 1M+ tokens per day | Multi-round debugging, multi-agent work, and long-context projects can see a very large monthly difference |
+
+Rule of thumb: if your blended model price is a few to dozens of RMB per 1M tokens, saving 6M-30M tokens per month roughly maps to tens to hundreds of RMB saved. Higher usage or more expensive models amplify the benefit. Actual savings depend on model pricing, cache hit rate, project size, and daily workflow.
+
 ## What This Is
 
 CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical optimization layer for long-running real-world projects:
