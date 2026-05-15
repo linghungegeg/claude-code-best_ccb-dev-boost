@@ -24,7 +24,9 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 
 ## Real-World Measurement
 
-In multi-turn development and bug fixing on a legacy H5 game codebase, the optimized prompt-cache hit rate stayed around **92%-96%** over long-running work, with peak runs reaching **98%**. This is observed from real development usage, not a theoretical estimate. Actual results still depend on the model, context length, MCP setup, file-read volume, and session workflow.
+In multi-turn development, staged delivery, and bug fixing on large/legacy real-world projects, the optimized prompt-cache hit rate stayed around **92%-96%** over long-running work, with some long-session aggregates reaching **97%+** and peak turns approaching **98%**. In one GPT-5.5 workflow measurement, local JSONL usage records showed 885 usage entries, 711,520 input tokens, and 24,642,048 cache-read tokens, giving an aggregate hit rate of about **97.19%** using `cache_read / (input + cache_write + cache_read)`. The provider billing dashboard also matched the high cache-hit behavior.
+
+This does not mean any model naturally guarantees that hit rate. It is the combined effect of CCB Dev Boost stabilizing the system prompt, tool schemas, MCP tool list, indexing, and staged workflow. Actual results still depend on the model, provider, context length, MCP setup, file-read volume, and session workflow.
 
 ## Cost Reference
 
@@ -38,7 +40,7 @@ For input-heavy, long-running work on the same project with stable prompt-cache 
 |---|---|
 | Model switch only: Claude Sonnet → DeepSeek V4 Pro | Model-price difference can reduce cost to roughly 1/7-1/10, saving about 85%-90% |
 | CCB Dev Boost only: still using Claude | Indexing, fewer file reads, and cache stability usually reduce 40%-60% of wasted input tokens |
-| CCB Dev Boost + DeepSeek V4 Pro | Under the measured 92%-96% long-running cache hit rate, with peak runs at 98%, total API spend can potentially drop by 90%+ |
+| CCB Dev Boost + DeepSeek V4 Pro | Under the measured 92%-96% long-running cache hit rate, with some long-session aggregates at 97%+ and peak turns near 98%, total API spend can potentially drop by 90%+ |
 
 Intuition: if heavy development used to cost around ¥100, an ideal setup with official DeepSeek V4 Pro pricing, high input ratio, and stable cache hits may bring it down to single-digit or low-teen RMB. The real bill depends on output ratio, model pricing, cache hit rate, MCP stability, project size, and workflow.
 
@@ -87,7 +89,7 @@ CCB Dev Boost keeps the terminal coding workflow from CCB and adds a practical o
 | Area | Result |
 |---|---|
 | Token usage | Small requests save roughly 500-1,500 tokens; large codebase analysis can avoid 10K-30K unnecessary tokens |
-| Measured cache hit rate | Stable 92%-96% in multi-turn legacy H5 game development and bug fixing; peak runs reached 98% |
+| Measured cache hit rate | Stable 92%-96% in large/legacy real-project development; some long-session aggregates reached 97%+, with peak turns near 98% |
 | Cache stability | MCP tool stabilization reduces 80%+ of cache busts caused by MCP reconnect noise |
 | Latency | Independent tool calls can run in parallel, reducing latency by about 40%-75% in 2-4 tool scenarios |
 | Code navigation | Call-chain and impact analysis move from multiple Grep/Read rounds to one index query plus targeted source reads |
