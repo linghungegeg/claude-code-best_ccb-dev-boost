@@ -24,7 +24,28 @@ A developer-focused Claude Code Best fork for large codebases: lower token usage
 
 ## Real-World Measurement
 
-In multi-turn development, staged delivery, and bug fixing on large/legacy real-world projects, the optimized prompt-cache hit rate stayed around **92%-96%** over long-running work, with some long-session aggregates reaching **97%+** and peak turns approaching **98%**. In one GPT-5.5 workflow measurement, local JSONL usage records showed 885 usage entries, 711,520 input tokens, and 24,642,048 cache-read tokens, giving an aggregate hit rate of about **97.19%** using `cache_read / (input + cache_write + cache_read)`. The provider billing dashboard also matched the high cache-hit behavior.
+In multi-turn development, staged delivery, and bug fixing on large/legacy real-world projects, the optimized prompt-cache hit rate stayed around **92%-96%** over long-running work, with some long-session aggregates reaching **97%+** and peak turns approaching **98%**. This is not a theoretical estimate: local usage logs and the provider billing dashboard both showed the same high cache-hit behavior.
+
+One GPT-5.5 workflow sample extracted from local CCB session JSONL usage records:
+
+```text
+Input 416,   CacheRead 22528, HitRate 98.19%
+Input 507,   CacheRead 22528, HitRate 97.80%
+Input 593,   CacheRead 22528, HitRate 97.44%
+Input 748,   CacheRead 22528, HitRate 96.79%
+Input 5920,  CacheRead 62976, HitRate 91.41%
+```
+
+Aggregate:
+
+```text
+Records:     885
+Input:       711,520
+Output:      107,835
+CacheCreate: 0
+CacheRead:   24,642,048
+HitRate:     97.19%
+```
 
 This does not mean any model naturally guarantees that hit rate. It is the combined effect of CCB Dev Boost stabilizing the system prompt, tool schemas, MCP tool list, indexing, and staged workflow. Actual results still depend on the model, provider, context length, MCP setup, file-read volume, and session workflow.
 

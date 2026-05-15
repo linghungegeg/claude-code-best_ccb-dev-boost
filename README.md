@@ -24,7 +24,28 @@
 
 ## 真实项目实测
 
-在真实大型项目/老项目的多轮开发、阶段交付和 bug 修复场景中，优化后 prompt cache 命中率长期稳定在 **92%-96%**，部分长会话汇总可达到 **97%+**，峰值轮次接近 **98%**。其中一次 GPT-5.5 工作流实测从本地 JSONL usage 记录中抽取到：885 条 usage 记录、711,520 input tokens、24,642,048 cache read tokens，按 `cache_read / (input + cache_write + cache_read)` 计算的汇总命中率约 **97.19%**；账号账单侧也能对应看到高缓存命中。
+在真实大型项目/老项目的多轮开发、阶段交付和 bug 修复场景中，优化后 prompt cache 命中率长期稳定在 **92%-96%**，部分长会话汇总可达到 **97%+**，峰值轮次接近 **98%**。这不是理论估算，而是本地 usage 日志和账号账单侧都能对应看到的真实开发结果。
+
+其中一次 GPT-5.5 工作流，从本地 CCB 会话 JSONL 中抽取到的部分 usage 样例：
+
+```text
+Input 416,   CacheRead 22528, HitRate 98.19%
+Input 507,   CacheRead 22528, HitRate 97.80%
+Input 593,   CacheRead 22528, HitRate 97.44%
+Input 748,   CacheRead 22528, HitRate 96.79%
+Input 5920,  CacheRead 62976, HitRate 91.41%
+```
+
+汇总统计：
+
+```text
+Records:     885
+Input:       711,520
+Output:      107,835
+CacheCreate: 0
+CacheRead:   24,642,048
+HitRate:     97.19%
+```
 
 这不是“某个模型天然保证高命中”，而是 CCB Dev Boost 稳定 system prompt、tool schema、MCP 工具列表、索引和阶段化工作流共同作用的结果。实际结果仍受模型、provider、上下文长度、MCP 配置、文件读取量和会话方式影响。
 
