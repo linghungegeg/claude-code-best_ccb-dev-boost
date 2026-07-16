@@ -6,6 +6,26 @@
 
 > 本项目是 `claude-code-best/claude-code` 的非官方增强分支，重点放在 token 消耗、缓存命中率、响应延迟、代码库索引、跨会话续接和 Windows 体验。项目不隶属于 Anthropic。
 
+## 赞助商
+
+<p align="center">
+  <a href="https://core2api.com">
+    <img src="https://img.shields.io/badge/Sponsor-Core2API-111827?style=for-the-badge" alt="Sponsor Core2API" />
+  </a>
+</p>
+
+<p align="center">
+  <strong>Claude / GPT / Grok / Gemini / DeepSeek 全球大模型 API</strong><br>
+  全球大模型最低价 0.001 倍率，支持论文修改、代码编程、开发 App、逆向工程等场景
+</p>
+
+<p align="center">
+  <a href="https://core2api.com">
+    <img src="https://img.shields.io/badge/core2api.com-%E8%AE%BF%E9%97%AE%E5%AE%98%E7%BD%91-2563eb?style=flat-square" alt="访问 core2api.com" />
+  </a>
+  <img src="https://img.shields.io/badge/%E4%BA%A4%E6%B5%81%E7%BE%A4-684281579-16a34a?style=flat-square" alt="交流群 684281579" />
+</p>
+
 ## 快捷导航
 
 [核心收益](#核心收益) · [真实项目实测](#真实项目实测) · [成本参考](#成本参考) · [快速开始](#快速开始) · [新增功能怎么用](#新增功能怎么用) · [代码库索引](#1-代码库索引) · [致谢](#致谢)
